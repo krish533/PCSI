@@ -1,0 +1,310 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[sc]{mathpazo}
+\usepackage{courier}
+\linespread{1.04}
+\usepackage{microtype}
+\usepackage{placeins}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage[labelfont=bf]{caption}
+\usepackage[authoryear,round]{natbib}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+
+\graphicspath{{figures/}}
+\setlength{\bibsep}{2pt}
+\captionsetup[table]{skip=6pt}
+\captionsetup[figure]{skip=6pt}
+\renewcommand{\arraystretch}{1.12}
+
+\title{\textbf{Communication as Governance:}\\[2pt]
+\textbf{Measuring Communicative Stance in University Intellectual Property Policies}}
+\author{Working Paper}
+\date{October 2026}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+\noindent University intellectual-property policies allocate rights and also communicate authority. We develop the Policy Communication Stance Index (PCSI), a human-anchored measure of supportive versus restrictive language, using 87,159 sentences from 518 policy documents at 150 U.S.\ research universities (1944--2025). As scored by our classifier, written stance leans restrictive: 86 percent of university-years fall below the scale midpoint. Stance has become more restrictive since 1980, within universities, policy topics, and rule forms. Universities also differ persistently, and observable characteristics explain little of these differences. The index does not reduce to readability, legal density, or measured rule form.
+
+\vspace{0.8em}
+\noindent\textbf{Keywords:} institutional governance; policy communication; university technology transfer; intellectual property; text as data; organizational heterogeneity
+
+\noindent\textbf{JEL Codes:} O34, O38, I23, C55, K11
+\end{abstract}
+
+\newpage
+\onehalfspacing
+
+% =====================================================================
+\section{Introduction}\label{sec:intro}
+
+Universities govern faculty inventions through written intellectual-property (IP) policies. These policies decide who owns an invention, when faculty must disclose it, how rights pass to the university, and how licensing income is shared with inventors. They are the formal backbone of university technology transfer. Most research treats them as sets of rules. But a policy is also a piece of institutional writing, and the way it states its rules may matter in its own right.
+
+The literature on university innovation has studied these rules closely, along with the incentives they create, the offices that administer them, and the commercial activity that follows \citep{mowery2001growth,sampat2006patenting,jensen2003disclosure,perkmann2021academic}. Even so, the link between formal terms and outcomes has been hard to pin down. \citet{lach2008incentives} reported that universities giving inventors a larger royalty share earn more licensing income; \citet{ouellette2020patent} later found errors in how those shares were coded and no robust evidence of the effect. What the literature has examined much less is how the policies communicate: whether they address inventors with commands or with offers of help.
+
+We call this \emph{communicative stance}. Two policies can impose the same disclosure duty, one by stating what inventors must do and the other by describing the help the university will give once they come forward. This difference does not require every inventor to read the policy. Faculty usually meet IP governance through technology-transfer offices (TTOs), licensing staff, disclosure procedures, and departmental colleagues, and the written policy supplies the rules these intermediaries interpret and apply \citep{jensen2003disclosure,siegel2003assessing}. Studies of faculty behavior show that the perceived costs of dealing with the TTO and the local working environment shape whether faculty disclose inventions and take part in technology transfer \citep{owensmith2001patent,bercovitz2008academic}. Written stance is the first link in that chain, and it is the one we can observe directly.
+
+We measure it with the Policy Communication Stance Index (PCSI). The data cover 150 U.S.\ research universities from 1944 to 2025: 87,159 cleaned sentences from 518 policy documents. Human coders labeled a sample of sentences as restrictive, neutral, or supportive. A fine-tuned language classifier then extends those judgments to the full corpus, and we average its predicted probabilities into a score for each university and year. This follows the text-as-data practice of defining a concept through human judgment before scaling it statistically \citep{grimmer2013text,gentzkow2019text,adcock2001measurement}.
+
+Three findings emerge. First, policy language leans restrictive: mean PCSI is 0.437 on a scale from 0 to 1, and 86 percent of university-years fall below the neutral midpoint. Second, stance has become more restrictive since about 1980. The decline appears within universities and is not confined to the ownership and assignment clauses that a well-known court decision brought into focus. Third, universities differ in lasting ways. About half of the variation lies between universities, and private R1 universities write more supportive policies than public R1 universities, yet observable characteristics explain only a small share of these differences.
+
+The paper's contribution is to make a neglected part of university governance measurable. Research on technology transfer has asked what IP policies require; we ask how they say it, and we show that the answer varies across institutions and over time in ways that simple features of legal prose do not explain. Section~\ref{sec:framework} reviews the related literature, Section~\ref{sec:measure} describes the index, Section~\ref{sec:results} presents the findings, and Section~\ref{sec:discussion} discusses what they mean.
+
+% =====================================================================
+\section{Related Literature and Conceptual Motivation}\label{sec:framework}
+
+\subsection{University IP Governance and Innovation Incentives}
+
+After the Bayh--Dole Act of 1980, U.S.\ universities expanded patenting and licensing, and research has followed how this activity grew and what drove it \citep{mowery2001growth,sampat2006patenting}. A central concern is incentives. University policies allocate ownership and set the inventor's share of licensing income, so economists have asked whether more generous terms lead to more disclosure and licensing \citep{lach2008incentives,ouellette2020patent}. A broader literature on academic engagement places patenting and licensing within a wider set of interactions between academics and external organizations, including collaborative research, contract research, and consulting \citep{perkmann2021academic}. Across this work, the policy enters mainly through its terms.
+
+\subsection{Organizational Communication and Formal Rules}
+
+Organization scholars treat formal texts as more than containers for rules. Texts represent the organization, coordinate activity across settings, and can continue to speak for an institution long after their authors have left \citep{smith2001texts,cooren2004textual,putnam2004alternative,fairhurst2004organizations}. Institutional analysis makes a related distinction. The Institutional Grammar breaks a rule into its parts: who is addressed, what is required or allowed, under what conditions, and with what consequence for noncompliance \citep{crawford1995grammar}. The same requirement can therefore be stated in different ways, and the wording can signal how the institution expects to relate to the people it governs \citep{phillips2004discourse}. Work on the expressive function of law makes a similar point: rules send messages beyond their formal sanctions \citep{sunstein1996expressive}.
+
+\subsection{TTOs as Intermediaries between Policy and Faculty}
+
+Few faculty are likely to study their university's IP policy in detail. Their experience of IP governance is shaped mostly by the people and procedures that administer it. \citet{jensen2003disclosure} model the TTO as an agent of both the university administration and the faculty, balancing the university's ownership interest against the need to attract disclosures. Interviews with managers, entrepreneurs, and administrators point to organizational practices, including faculty reward systems, TTO staffing, and efforts to reduce informational and cultural barriers, as important for how well technology transfer works \citep{siegel2003assessing}. Fieldwork at two universities finds that faculty decisions to disclose depend on the perceived benefits of patenting and the perceived costs of dealing with technology-transfer staff, and on whether the local environment supports commercial work \citep{owensmith2001patent}. Faculty participation also depends on the department: when the chair and peers are active, others tend to follow \citep{bercovitz2008academic}.
+
+These studies suggest a possible pathway from written policy to inventors. The policy states the rules; TTO staff and administrators interpret and apply them; faculty experience governance through those interactions; and that experience may shape their decisions. Our data cover only the first step. The pathway does not assume that TTO staff repeat the wording or tone of the policy, and whether written stance matches actual practice is a question for future research.
+
+\subsection{Why Measure Stance Separately from Rule Content}
+
+If wording can vary while the rule stays fixed, stance should be measured on its own rather than inferred from a policy's terms. Theory and experiments on controlling incentives give one reason it could matter: signals of control can reduce the effort of people who are intrinsically motivated \citep{benabou2003intrinsic,falk2006hidden}. The closest existing measure, the survey-based Policy Communication Index of \citet{canary2013policy}, captures how organizations communicate their policies through practices and channels. We study the stance written into the policy itself.
+
+The literature also suggests what a meaningful measure should show. Stance should vary among sentences with the same grammatical rule form, so that it is not simply a count of obligations. Because formal language is often copied and revised in small steps \citep{kahan1997standardization,choi2013dynamics}, stance should persist within each university and be only loosely tied to broad institutional categories. And because organizations in the same field respond to shared legal and professional pressures \citep{dimaggio1983iron,edelman1992legal}, any drift in stance should appear across many universities and many kinds of clauses. Section~\ref{sec:captures} examines the first point and Section~\ref{sec:results} the other two.
+
+% =====================================================================
+\section{Measuring the Policy Communication Stance Index}\label{sec:measure}
+
+\subsection{Policy Texts}
+
+The corpus contains IP policies from 150 U.S.\ research universities between 1944 and 2025: 87,159 cleaned sentences from 518 policy documents, each identified by university, year, and file. The documents cover ownership, disclosure, assignment, licensing authority, commercialization procedures, and revenue sharing.
+
+When a university has more than one relevant document in a year, we pool their sentences before scoring. This gives 480 university-years with policy text. Between those years, we carry the most recent score forward until a newer document appears, which produces 4,277 annual observations of the policy in force through 2025. Each annual row records the year of the document behind its score, so we can always separate the annual panel from the 480 years with new text. Table~\ref{tab:sample} summarizes the sample, and Appendix~\ref{app:data} gives details.
+
+\input{tables/tab_sample}
+
+\subsection{Human Coding}
+
+We define communicative stance as the supportive, neutral, or restrictive way a policy presents rights, obligations, authority, and assistance. Supportive sentences offer help, guidance, encouragement, collaboration, or shared interests. Restrictive sentences stress mandatory assignment, categorical duties, unilateral authority, prohibitions, sanctions, or compliance. Neutral sentences mainly define terms, describe arrangements, or set out procedure. Coders labeled the main message of each full sentence, and disagreements were settled by adjudication. The concept concerns expression, not the generosity of the underlying rule or how readers react.
+
+Rule content and stance need not line up. Table~\ref{tab:examples} shows examples from the corpus; the last two rows are disclosure provisions written with opposite stance. Appendix~\ref{app:model} gives the full coding rubric.
+
+\input{tables/tab_examples}
+
+\subsection{Scaling with a Classifier}
+
+Hand-coding 87,000 sentences is not feasible, so we use the human labels to train a classifier. The model is a fine-tuned \texttt{bert-base-uncased} language model \citep{devlin2019bert}.\footnote{Fine-tuning means training a model that has already learned general English further on the sentences labeled for this study. The model reads each word in the context of the words around it, which matters for terms such as \emph{shall}, \emph{may}, or \emph{assign}.} The labeled sample has 2,732 sentences: 2,458 for training and 274 held out for testing. On the held-out set the model reached 90.1 percent accuracy and a macro-F1 score of 0.894.\footnote{Accuracy is the share of held-out sentences given the same label as the human coders. Macro-F1 averages, across the three classes, a score that balances how often the model's predictions of a class are right and how many of that class's sentences it finds. It keeps the most common class from dominating the result.} These figures come from the original training run and are stored with the model. The labeled sentences themselves and the coders' individual labels were not preserved, so they cannot be re-estimated (Appendix~\ref{app:model}).
+
+For each sentence the classifier gives a probability that it is restrictive, neutral, or supportive. We adjust these probabilities with temperature scaling before using them \citep{guo2017calibration}.\footnote{Temperature scaling rescales the probabilities with one fitted number so that they better reflect how often the model is right. It never changes which class is most likely.}
+
+\subsection{The Index}
+
+The index places restrictive language at 0, neutral at 0.5, and supportive at 1. Each sentence receives the expected value of that scale under the classifier's probabilities. A sentence the model is confident is supportive scores near 1; one it is confident is restrictive scores near 0. Formally, if $\hat p_{Ri}$, $\hat p_{Ni}$, and $\hat p_{Si}$ are the adjusted probabilities for sentence $i$, its score is
+\begin{equation}
+s_i = 0.5\,\hat p_{Ni} + \hat p_{Si}.
+\end{equation}
+PCSI for university $j$ in year $t$ is the simple average of its sentence scores:
+\begin{equation}
+\text{PCSI}_{jt} = \frac{1}{N_{jt}}\sum_{i=1}^{N_{jt}} s_i = 0.5 + 0.5\left(\bar{\hat p}_{S} - \bar{\hat p}_{R}\right)_{jt}.
+\end{equation}
+The second form shows that a score below 0.5 means the policy carries more restrictive than supportive probability on average. It does not mean every sentence is restrictive; supportive and restrictive sentences can offset each other.
+
+\subsection{What the Index Captures}\label{sec:captures}
+
+Three checks show what PCSI reflects.
+
+First, the result does not depend on how sentence scores are combined. A trimmed mean, which drops the most extreme 5 percent of sentence scores, and a mean weighted by sentence length correlate with the baseline at 0.999 and 0.930. The median preserves most of the ranking of policies (rank correlation 0.878) but changes the distances between them more (Appendix~\ref{app:robust}).
+
+Second, PCSI tracks the tone of the language rather than its readability or legal density. We build three simple word-based measures from the same text. \emph{Tone} compares supportive and collaborative wording with obligation, control, and sanction wording; \emph{Clarity} reflects sentence length and procedural guidance; \emph{Legal Load} reflects legal and IP-technical vocabulary (Appendix~\ref{app:linguistic}). Together they explain about a quarter of the variation in PCSI ($R^2 = 0.236$), and Tone accounts for almost all of that: 89 percent of the explained variation by a Shapley decomposition, against 9 percent for Legal Load and 2 percent for Clarity (Table~\ref{tab:linguistic}).\footnote{A Shapley decomposition divides a regression's explained variation among its variables by averaging each variable's contribution over every possible order of entry. It describes fit, not causal importance \citep{groemping2006relative}.} Tone and Legal Load are nearly unrelated ($r = 0.029$): a technically dense policy can still offer help, and a plain one can assert firm control.
+
+\input{tables/tab_linguistic}
+
+Third, PCSI is not just a count of rules. Following the Institutional Grammar \citep{crawford1995grammar}, we use keyword rules to classify each sentence's deontic operator (the word that makes it an obligation, a prohibition, or a permission, such as \emph{must}, \emph{must not}, or \emph{may}) and to flag sanction language. Obligations are the most restrictive form on average, with a mean sentence score of 0.329 against 0.467 for sentences without an operator. But most of the variation lies within forms: the eight combinations of operator and sanction explain only 4.8 percent of the sentence-level variation in stance (Appendix Table~\ref{tab:rule-form}). A version of PCSI that removes these form differences correlates 0.94 with the original and gives the same main results (Appendix~\ref{app:uncertainty}). Keywords capture only part of a sentence's legal content, so this check shows that stance is not a count of musts and mays; it does not show that framing is fully separate from legal substance.
+
+% =====================================================================
+\section{Results}\label{sec:results}
+
+\subsection{Finding 1: University IP-Policy Language Leans Restrictive}\label{sec:level}
+
+Figure~\ref{fig:hist} shows the distribution of PCSI across the 4,277 annual observations, and Table~\ref{tab:dist} summarizes it. The mean is 0.437 and the median 0.427. Most observations lie between 0.39 and 0.47, and the full range runs from 0.264 to 0.730. The key fact is where this mass sits: 86.0 percent of observations fall below the neutral midpoint of 0.50. In the typical policy, the classifier assigns more weight to restrictive than to supportive language.
+
+The pattern does not come from carrying old scores forward. Among the 480 university-years with new policy text, the mean is 0.429 and 89.6 percent fall below 0.50. The upper tail matters too. Some policies reach 0.73, so far more supportive writing is possible within the same genre.
+
+\input{tables/tab_distribution}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.82\textwidth]{fig1_pci_histogram.pdf}
+\caption{Distribution of PCSI in the 1944--2025 Policy-in-Force Panel ($N = 4{,}277$). The dashed line marks the scale midpoint of 0.50; the solid and dotted lines mark the mean and median.}
+\label{fig:hist}
+\end{figure}
+
+\subsection{Finding 2: Stance Has Become More Restrictive over Time}\label{sec:time}
+
+Figure~\ref{fig:trend} plots mean PCSI each year from 1978, the first year with at least five universities in the data. Average stance peaks at about 0.49 around 1980 and falls to about 0.42 by 2025.
+
+Part of a raw trend like this can reflect changes in which universities the archive covers. The decline holds, however, when we follow the same universities. Among the 93 universities already in the data by 2000, mean PCSI falls from 0.447 to 0.422. A trend estimated within universities, which compares each university only with itself, is $-0.00112$ per year ($p = 0.008$).\footnote{The within-university trends use university fixed effects, which remove each university's average level, and standard errors clustered by university, which allow for related observations from the same institution.} Using only years with new policy text from 1980 onward gives almost the same estimate, $-0.00117$ per year ($p = 0.003$). Appendix~\ref{app:temporal} shows the same pattern for groups of universities fixed in 1990, 1995, and 2005.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.86\textwidth]{fig3_temporal_trend_pcsi.pdf}
+\caption{Annual Mean PCSI, 1978--2025. Points show each year's mean in the policy-in-force panel, with point size proportional to the number of universities. The shaded band is the 95\% confidence interval, the dashed line is a three-year rolling mean, and the dotted line marks the midpoint of 0.50. Years before 1978 have fewer than five universities and are omitted.}
+\label{fig:trend}
+\end{figure}
+
+A natural explanation is a change in the rules themselves. In \emph{Stanford v.\ Roche} (2011), the Supreme Court distinguished a promise to assign patent rights from a present assignment of those rights.\footnote{\emph{Board of Trustees of the Leland Stanford Junior University v.\ Roche Molecular Systems, Inc.}, 563 U.S. 776 (2011). The decision concerns assignment wording; by itself it does not show how many universities later revised their policies.} Ownership and assignment clauses are also among the most restrictive in the corpus. If universities had simply rewritten these clauses, the decline would be concentrated there.
+
+It is not. We sort sentences into clause topics by keyword and estimate the within-university trend for each (Figure~\ref{fig:topics}). Ownership and assignment language shows almost no trend ($-0.0003$ per year, $p = 0.64$). Disclosure, revenue-sharing, and administrative language all become more restrictive, and every other topic moves in the same direction.
+
+A second check splits the decline into two parts: changes in stance within categories of clauses, and changes in how much text falls in each category.\footnote{This is a shift-share decomposition. We compute it separately for each university and then average, using the 63 universities with new policy text in both 1980--1999 and 2010--2025. Appendix~\ref{app:topics} gives the exact formula.} For the 63 universities with policy text in both 1980--1999 and 2010--2025, mean PCSI fell by 0.029. Changes within topics account for 77 percent of this decline and changes in the mix of topics for 23 percent. By rule form, changes within forms account for 94 percent. Later policies do not mainly contain more restrictive kinds of clauses; they write the same kinds of clauses in a more restrictive way. Because the categories come from keywords, a change within a category could still reflect a real change in legal content.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.82\textwidth]{fig_topic_trends.pdf}
+\caption{Within-University Trends in Sentence Stance by Clause Topic, 1980--2025. Each point is the yearly trend in a topic's mean sentence score within universities, using years with new policy text from 1980 onward; trends are multiplied by 1,000. Bars are 95\% confidence intervals with standard errors clustered by university. Topics are assigned by keyword and can overlap (Appendix~\ref{app:topics}).}
+\label{fig:topics}
+\end{figure}
+
+\subsection{Finding 3: Universities Differ Persistently in Stance}\label{sec:institutions}
+
+Stance behaves like a stable trait of each university. In the annual panel, 61.0 percent of the variation in PCSI lies between universities and 39.0 percent within them over time. Carrying scores forward inflates this persistence, but using only years with new text still leaves 48.7 percent between universities (Appendix Table~\ref{tab:variance}). Revisions tend to be small: across 330 successive revisions, the median change in PCSI is 0.021. The pattern resembles a lasting institutional writing style, much as individual managers leave distinctive styles on the firms they run \citep[compare][]{bertrand2003managing}.
+
+Some of these differences follow institutional type (Table~\ref{tab:inst-means}). Private R1 universities average 0.456, against 0.427 for public R1 universities. Land-grant universities average 0.420, against 0.442 for other universities. Both differences are statistically significant in rank-based tests and survive a correction for testing several characteristics; medical-school status and urbanicity are not.\footnote{Rank-based tests (Kruskal--Wallis and Wilcoxon) compare groups using the ranks of the values, which suits small groups and skewed data. The Holm correction adjusts the four $p$-values for multiple testing (Appendix Table~\ref{tab:holm}). We label universities without the data's R1 flag ``non-R1''; the flag's Carnegie edition is not recorded, so we do not call this group R2. Land-grant status follows the Morrill Acts of 1862 and 1890, and urbanicity is a three-way rural, semi-urban, and city coding supplied with the data.}
+
+\input{tables/tab_inst_means}
+
+Table~\ref{tab:inst-reg} looks at these characteristics together. With one average per university, the private-R1 difference falls from 0.029 to about 0.020 once land-grant, medical-school, urbanicity, and region are included, and it is no longer precisely estimated. University averages, however, mix institutional differences with the decades in which each policy was written. Column (4) therefore compares only policies written in the same year. Here the private-R1 difference is 0.040 (standard error 0.012), while the land-grant difference shrinks to $-0.005$ and is imprecise. The private-R1 gap is the clearest institutional pattern; the land-grant gap largely reflects overlap with other characteristics. Weighting universities by the number of documents or sentences does not change the overall picture (Appendix Table~\ref{tab:inst-robust}).
+
+\input{tables/tab_inst_reg}
+
+Even taken together, observable characteristics explain at most about a sixth of the variation in average PCSI across universities. Broad categories organize some of the differences in how universities write, but most of the variation is specific to each institution.
+
+% =====================================================================
+\section{Discussion}\label{sec:discussion}
+
+The three findings fit together. University IP policies tend to address inventors in restrictive terms; that tendency has grown since the 1980s across many kinds of clauses; and each university keeps a recognizable stance that broad institutional categories explain only in part. The first finding shows that stance is a real feature of these documents. The second and third show that it varies in the ways the literature on organizational texts and institutional fields would lead one to expect.
+
+Persistence with weak observable correlates is consistent with drafting histories specific to each institution. Research on contracts shows that legal language is often carried over from earlier documents and changed in small steps \citep{kahan1997standardization,choi2013dynamics}; university policies may evolve in a similar way, although those studies do not examine universities. The shared shift toward more restrictive wording fits the view that organizations in the same field respond to common legal and professional pressures \citep{dimaggio1983iron,edelman1992legal}. Because the shift appears within clause topics and rule forms, it looks more like a change in drafting register than a response to one legal event.
+
+Why might written stance matter? The literature reviewed in Section~\ref{sec:framework} points to the people who administer the rules. TTO staff and administrators interpret policies, run disclosure procedures, and negotiate with inventors, and faculty decisions respond to how costly and supportive those interactions seem \citep{owensmith2001patent,jensen2003disclosure,siegel2003assessing,bercovitz2008academic}. A policy's stance may shape the guidance and expectations these intermediaries work from. This is a possible pathway, not one we test. PCSI measures the written policy, not how TTO staff behave, how faculty perceive governance, or what they go on to do.
+
+The study has several limitations. The annual panel assumes that the most recent policy stays in force until a newer one is found; results using only years with new text are similar, but the archive may be incomplete. The classifier reads sentences one at a time, so it misses layout and the links between passages, and the keyword rules for topics and rule forms are transparent but coarse. Our regressions treat predicted scores as data. The main results hold when PCSI is built from each sentence's single most likely label, or only from sentences the model classifies with high confidence (Appendix~\ref{app:uncertainty}), but formal corrections for predicted variables are not applied \citep{egami2023using,battaglia2024inference}. Finally, a more supportive policy is not necessarily a better one, and PCSI says nothing about the generosity of legal rights.
+
+% =====================================================================
+\section{Conclusion}\label{sec:conclusion}
+
+University IP policies are usually studied for what they require. This paper measures how they say it. PCSI anchors supportive and restrictive language in human judgment and scales it to 150 research universities over eight decades. As scored by the classifier, the policies lean restrictive, have become more restrictive since the 1980s, and differ persistently across universities in ways that observable characteristics explain only partly. The measure opens a path for studying how written governance relates to the practices of technology-transfer offices and to the decisions of the faculty they serve.
+
+\section*{Data and Code Availability}
+
+The scored sentences, derived indices, code, and manuscript source are available at \url{https://github.com/krish533/PCSI}.
+
+\singlespacing
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+% =====================================================================
+\newpage
+\appendix
+\onehalfspacing
+\renewcommand{\thetable}{\thesection\arabic{table}}
+\renewcommand{\thefigure}{\thesection\arabic{figure}}
+
+\section{Data Construction}\label{app:data}
+\setcounter{table}{0}
+
+The analysis uses 87,159 cleaned sentences from 518 policy documents at 150 U.S.\ research universities, 1944--2025. Documents from the same university and year are pooled before scoring, giving 480 university-years with policy text. The annual panel carries each score forward until a newer document appears for that university, giving 4,277 observations through 2025; each row records the year of the document behind its score. For comparisons across universities, each university's annual scores are averaged so that every university counts once. The archive also holds a single one-sentence record from 1925, which is kept for completeness and excluded from the analysis.
+
+\section{Coding Rubric and Classifier}\label{app:model}
+\setcounter{table}{0}
+
+\paragraph{Coding rubric.} Coders label each sentence supportive, neutral, or restrictive according to its main message. Supportive language emphasizes help, guidance, encouragement, collaboration, shared interests, or facilitation. Restrictive language emphasizes mandatory assignment, unilateral authority, prohibitions, sanctions, forfeiture, or categorical compliance. Neutral language mainly defines terms, describes arrangements, or sets out procedure. Several trained coders applied the rubric, and disagreements were adjudicated.
+
+\paragraph{What is preserved.} The released package contains the trained classifier, its configuration and tokenizer, the calibration parameter, and the metrics recorded when the model was trained (2,458 training and 274 validation sentences; 90.1 percent accuracy; macro-F1 of 0.894). The 2,732 adjudicated sentences and the coders' individual labels are not preserved. The accuracy figures are therefore historical results stored with the model, and agreement among the original coders cannot be reported.
+
+\paragraph{Classifier and calibration.} Table~\ref{tab:classifier} reports the model's settings. Temperature scaling is applied before probabilities are averaged. Rescoring a random sample of 2,000 sentences with the saved model reproduces the stored probabilities to within $4\times10^{-6}$ and gives every sentence the same label. Rebuilding the university-year indices from the stored sentence scores reproduces them exactly.
+
+\input{tables/tab_classifier}
+
+\section{Aggregation and Persistence}\label{app:robust}
+\setcounter{table}{0}
+
+Table~\ref{tab:aggregation} compares the baseline index with the median, a 5-percent trimmed mean, and a length-weighted mean. Midpoint agreement is the share of observations that both versions place on the same side of 0.50. Trimming changes almost nothing, and length weighting stays close to the baseline. The median changes levels the most but keeps a rank correlation of 0.878. Table~\ref{tab:variance} splits the variation into between- and within-university parts for each version. Carrying scores forward raises persistence in every version, but large differences across universities remain without it.
+
+\input{tables/tab_aggregation}
+\input{tables/tab_variance}
+
+\section{Institutional Comparisons}\label{app:inst}
+\setcounter{table}{0}
+
+Table~\ref{tab:holm} reports the four rank-based comparisons with Holm-adjusted $p$-values. The simple differences hold across ways of combining sentence scores: the private-R1 minus public-R1 gap is 0.029 with the baseline, 0.018 with the median, and 0.032 with the trimmed and length-weighted means, and the land-grant gap ranges from $-0.020$ to $-0.024$. Using only years with new text, the two gaps are 0.033 and $-0.019$.
+
+\input{tables/tab_holm}
+
+Table~\ref{tab:inst-robust} reports the private-R1 and land-grant coefficients across samples and weights. The weighted rows give more influence to universities with more documents or sentences. Archive timing differs a little by type: the average document year is 2002.3 for private R1 universities and 2005.1 for public R1 universities. Because PCSI falls over time, university averages slightly favor older archives, which is why Column (4) of Table~\ref{tab:inst-reg} compares policies written in the same year. The private-R1 gap is larger in that comparison, not smaller.
+
+\input{tables/tab_inst_robust}
+
+\section{Word-Based Diagnostics}\label{app:linguistic}
+\setcounter{table}{0}
+
+The three diagnostics help interpret PCSI; they are not alternative measures of stance. Each component is standardized (expressed relative to its mean and standard deviation) before the components are combined:
+\begin{align}
+\text{Tone} &= \tfrac{1}{6}\big[z(\text{supportive}) + z(\text{second person}) + z(\text{inclusive we}) \notag\\
+&\qquad - z(\text{restrictive}) - z(\text{sanction}) - z(\text{obligation modal share})\big],\\
+\text{Clarity} &= \tfrac{1}{3}\big[-z(\text{mean sentence length}) - z(\text{long-sentence share}) + z(\text{procedural share})\big],\\
+\text{Legal Load} &= \tfrac{1}{2}\big[z(\text{legalese}) + z(\text{IP technical})\big].
+\end{align}
+The supportive, restrictive, sanction, procedural, legalese, and IP-technical components come from word lists in the replication code, and the second-person and inclusive-``we'' components capture direct and collective forms of address. The diagnostics are distinct: Tone and Clarity correlate at 0.143, Tone and Legal Load at 0.029, and Clarity and Legal Load at $-0.296$. Table~\ref{tab:length} shows that controlling for policy length leaves the Tone relationship almost unchanged. In the 480 years with new text, the three-diagnostic regression gives coefficients of 0.038 for Tone, 0.013 for Clarity, and 0.012 for Legal Load, with $R^2 = 0.151$.
+
+\input{tables/tab_length}
+
+\section{Trends over Time}\label{app:temporal}
+\setcounter{table}{0}
+
+Table~\ref{tab:cohorts} follows fixed groups of universities from several start years. Every group has a lower mean in 2025 than at its start, and every within-university trend is negative. Table~\ref{tab:observed-trends} uses only years with new policy text and reports both a pooled trend and a within-university trend. The post-2000 estimate is negative but less precise. The 2025 cross-section is not driven by old policies: among the 70 universities whose 2025 policy is at most five years old, 91 percent fall below the midpoint, against 92 percent of all 150.
+
+\input{tables/tab_cohorts}
+\input{tables/tab_observed_trends}
+
+\section{Clause Topics and Rule Forms}\label{app:topics}
+\setcounter{table}{0}
+
+\paragraph{Clause topics.} Sentences are sorted into topics by keyword: ownership and assignment (\emph{assign}, \emph{ownership}, \emph{title}, \emph{vest}, \emph{belong}); disclosure (\emph{disclos}, \emph{invention report}); revenue sharing (\emph{royalt}, \emph{revenue}, \emph{net income/proceeds}, \emph{distribut}, \emph{equity}); licensing and commercialization (\emph{licens}, \emph{commerciali}, \emph{technology transfer}, \emph{start-up}, \emph{patent application}); sponsored research and third parties (\emph{sponsor}, \emph{grant}, \emph{federal}, \emph{government}, \emph{contract}, \emph{third part}); copyright and software (\emph{copyright}, \emph{software}, \emph{courseware}, \emph{scholarly work}); administration and disputes (\emph{appeal}, \emph{dispute}, \emph{committee}, \emph{review}, \emph{waive}, \emph{grievance}, \emph{amend}); and definitions and scope (\emph{means}, \emph{defined}, \emph{applies to}, \emph{purpose}, \emph{scope}). In the topic trends a sentence can belong to several topics. In the decomposition each sentence gets one main topic (the first match in this order), and unmatched sentences form an ``other'' category. Among sentences from 1980 onward, 59 percent match at least one topic. Ownership and assignment sentences are the most restrictive (mean score 0.335) and definition and revenue-sharing sentences the least (0.448 and 0.453). Table~\ref{tab:topics} reports the topic trends.
+
+\paragraph{Decomposition.} The decomposition compares 1980--1999 with 2010--2025 for the 63 universities with new text in both periods (8,353 and 28,175 sentences). For university $i$ in period $t\in\{0,1\}$, let $s_{ikt}$ be the share of its sentences in category $k$ and $m_{ikt}$ the category's mean score, so the university's mean is $M_{it}=\sum_k s_{ikt}m_{ikt}$. Then
+\begin{equation}\begin{split}
+M_{i1}-M_{i0}
+&= \underbrace{\sum_k \frac{s_{ik1}+s_{ik0}}{2}(m_{ik1}-m_{ik0})}_{\text{within categories}}
++\underbrace{\sum_k \frac{m_{ik1}+m_{ik0}}{2}(s_{ik1}-s_{ik0})}_{\text{composition}}.
+\end{split}\end{equation}
+If a category is missing for a university in one period, its mean there is set to its mean in the other period, which assigns the category's appearance or disappearance to composition. The identity is applied university by university and the two parts are then averaged with equal weights. Both decompositions add up exactly to the observed change. The topic and rule-form versions are alternative descriptions of the same change and should not be added together. Table~\ref{tab:decomp} reports the results.
+
+\input{tables/tab_decomposition}
+
+\paragraph{Rule forms.} Each sentence gets one deontic operator, in this order of priority: prohibition (a negated \emph{shall}, \emph{must}, \emph{may}, \emph{will}, or \emph{can}; \emph{cannot}; \emph{prohibit}; \emph{not permitted}), obligation (\emph{shall}, \emph{must}, \emph{is required}, \emph{requires}, \emph{obligat-}, \emph{agrees to}, \emph{is expected to}), permission (\emph{may}, \emph{permit}, \emph{entitled}, \emph{discretion}, \emph{can}, \emph{allow}), or none. Sanction language (\emph{violat-}, \emph{disciplin-}, \emph{sanction}, \emph{forfeit}, \emph{terminat-}, \emph{breach}, \emph{penalt-}, \emph{dismiss}, \emph{revok-}) is flagged separately. Table~\ref{tab:rule-form} reports stance by form. At the policy level, the shares of obligation, prohibition, permission, and sanction sentences explain 11 percent of the variation in PCSI across the 480 years with new text.
+
+\input{tables/tab_topics}
+\input{tables/tab_rule_form}
+
+\section{Alternative Versions of PCSI}\label{app:uncertainty}
+\setcounter{table}{0}
+
+PCSI averages probabilities rather than single labels, so it keeps track of the classifier's uncertainty, but the regressions still treat predicted scores as data. Table~\ref{tab:alternatives} recomputes the main results three ways: from each sentence's single most likely label (scored 0, 0.5, or 1); from the 66 percent of sentences whose most likely label has a probability of at least 0.9; and from the version that removes rule-form differences (Section~\ref{sec:captures}). Every version places most policies below the midpoint, attributes about half of the variation in years with new text to universities, shows a negative within-university trend, and gives a positive and significant private-R1 coefficient. The model's confidence is also stable over time: from the 1970s onward, the average probability of the most likely label lies between 0.874 and 0.886 in every decade.
+
+\input{tables/tab_alternatives}
+
+\end{document}
