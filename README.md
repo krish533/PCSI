@@ -8,6 +8,13 @@ The paper builds the Policy Communication Stance Index (PCSI), a measure of supp
 
 This is the primary repository for the final paper. Earlier development work is archived at [krish533/Tech-transfer-1](https://github.com/krish533/Tech-transfer-1).
 
+## Current manuscript (October 20, 2026)
+
+- [Full LaTeX manuscript](manuscript/main.tex) includes the revised abstract, main text, Data and Code Availability statement, and all eight appendix sections. All appendix sections and appendix tables have cross-references from the main text.
+- [Bibliography](manuscript/references.bib), [tables](manuscript/tables/), and [figures](manuscript/figures/) are stored alongside the manuscript. The `manuscript/` directory can be used as an Overleaf project.
+- **Interpretation:** PCSI measures how IP policy language expresses obligations, authority, and support. A score below 0.50 is not a judgment that a university policy is bad, unfair, or ineffective. The manuscript does not estimate effects on faculty or TTO behavior.
+- **Reproducibility:** The tables and figures can be rebuilt from the released scores. Classifier weights require the archived repository (instructions below); the original human-coded labels were not preserved, so the original training evaluation cannot be independently repeated.
+
 ## Contents
 
 ```text
