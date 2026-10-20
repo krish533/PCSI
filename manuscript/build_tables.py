@@ -361,7 +361,7 @@ def t_temporal():
 
 def t_inst_robust():
     rob = pd.read_csv(REV / "table5_institutional_robustness.csv")
-    rows = [("Published (HC3)", "University means"), ("Common 144 sample (HC3)", "University means, common sample"),
+    rows = [("Published (HC3)", "University means"),
             ("WLS: weight = source policy years (HC3)", "WLS, weight = source policy years"),
             ("WLS: weight = sentences (HC3)", "WLS, weight = sentences"),
             ("Era-adjusted means: year-demeaned panel (HC3)", "Era-adjusted university means"),
@@ -376,17 +376,21 @@ def t_inst_robust():
         a = get(sample, "(1) Type only", "Private R1")
         b = get(sample, "(3) + Region FE", "Private R1")
         c = get(sample, "(3) + Region FE", "Land-grant")
-        body.append(f"{lab} & {coef(a.Coef, a.p)} & {coef(b.Coef, b.p)} & {coef(c.Coef, c.p)} & {int(b.N)} \\\\")
-        body.append(f" & {se(a.SE)} & {se(b.SE)} & {se(c.SE)} & \\\\")
+        body.append(f"{lab} & {coef(a.Coef, a.p)} & {int(a.N)} & {coef(b.Coef, b.p)} & {coef(c.Coef, c.p)} & {int(b.N)} \\\\")
+        body.append(f" & {se(a.SE)} & & {se(b.SE)} & {se(c.SE)} & \\\\")
+    common = get("Common 144 sample (HC3)", "(1) Type only", "Private R1")
     table("tab_inst_robust", "Private-R1 and Land-Grant Coefficients Across Samples and Estimators", "tab:inst-robust",
-          "lcccc", [" & Type only & \\multicolumn{2}{c}{Full controls} & \\\\", "\\cmidrule(lr){2-2}\\cmidrule(lr){3-4}",
-                    " & Private R1 & Private R1 & Land-grant & $N$ \\\\"], body,
+          "lccccc", [" & \\multicolumn{2}{c}{Type only} & \\multicolumn{3}{c}{Full controls} \\\\",
+                     "\\cmidrule(lr){2-3}\\cmidrule(lr){4-6}",
+                     " & Private R1 & $N$ & Private R1 & Land-grant & $N$ \\\\"], body,
           "Dependent variable is PCSI; public R1 is the omitted type. ``Full controls'' adds land-grant, medical-school, "
-          "and urbanicity indicators and region fixed effects. University-mean rows use HC3 standard errors; the "
-          "published row uses 150 universities for the type-only column and 144 with full controls. Era-adjusted means "
-          "subtract each calendar year's cross-sectional mean from the policy-in-force panel before averaging within "
-          "university. Source-text rows use university-years with directly available policy text, include source-year "
-          "fixed effects, and cluster standard errors by university. *** $p<0.01$; ** $p<0.05$; * $p<0.10$.")
+          "and urbanicity indicators and region fixed effects; it uses the 144 universities with complete covariates. "
+          "Re-estimating the type-only specification on those same 144 universities gives a private-R1 coefficient of "
+          f"{coef(common.Coef, common.p)} {se(common.SE)}, so the change between the two columns is not due to the "
+          "smaller sample. University-mean rows use HC3 standard errors. Era-adjusted means subtract each calendar "
+          "year's cross-sectional mean from the policy-in-force panel before averaging within university. Source-text "
+          "rows use university-years with directly available policy text, include source-year fixed effects, and "
+          "cluster standard errors by university. *** $p<0.01$; ** $p<0.05$; * $p<0.10$.")
 
 
 def t_topics():
